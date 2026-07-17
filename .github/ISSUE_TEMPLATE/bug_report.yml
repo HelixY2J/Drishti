@@ -1,0 +1,44 @@
+name: Bug report
+description: Report a defect in TLSOC documentation or ecosystem materials
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a problem.
+        If the bug is in a specific component, please file it in that repository instead:
+        [tlsoc-engine](https://github.com/sankettaware16/tlsoc-engine/issues) ·
+        [tlsoc-docker-deploy](https://github.com/sankettaware16/tlsoc-docker-deploy/issues) ·
+        [tlsoc-reporting](https://github.com/sankettaware16/tlsoc-reporting/issues)
+
+        **Never include real deployment data** (IPs, hostnames, organization names,
+        credentials, or raw log excerpts). Use placeholders.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What is wrong?
+      description: A clear description of the problem (broken link, incorrect diagram, wrong instruction, ...).
+      placeholder: The deployment diagram in docs/architecture.md shows ...
+    validations:
+      required: true
+  - type: input
+    id: location
+    attributes:
+      label: Where?
+      description: File and section, or URL.
+      placeholder: docs/architecture.md — "Deployment topology"
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect?
+    validations:
+      required: false
+  - type: textarea
+    id: extra
+    attributes:
+      label: Additional context
+    validations:
+      required: false

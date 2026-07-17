@@ -1,0 +1,14 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Security vulnerability
+    url: https://github.com/sankettaware16/tlsoc/security/advisories/new
+    about: Report security issues privately — never via public issues.
+  - name: tlsoc-engine issues
+    url: https://github.com/sankettaware16/tlsoc-engine/issues
+    about: Bugs and features for the parsing engine, Web UI, and Kibana plugin.
+  - name: tlsoc-docker-deploy issues
+    url: https://github.com/sankettaware16/tlsoc-docker-deploy/issues
+    about: Bugs and features for the Docker stack and onboarding script.
+  - name: tlsoc-reporting issues
+    url: https://github.com/sankettaware16/tlsoc-reporting/issues
+    about: Bugs and features for the reporting framework and emailer.

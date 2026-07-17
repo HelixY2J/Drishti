@@ -1,0 +1,7 @@
+# OS / editor artifacts
+.DS_Store
+Thumbs.db
+*.swp
+
+# Local working files
+*.local.md

@@ -1,0 +1,41 @@
+name: Feature request
+description: Propose an improvement or a new idea for the TLSOC platform
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template for cross-cutting platform ideas, documentation improvements,
+        or proposals for new ecosystem repositories. Component-specific features belong
+        in the component's own repository.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or motivation
+      description: What gap or pain does this address?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: What should happen? Which repositories are affected?
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+    validations:
+      required: false
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Scope
+      options:
+        - Documentation / ecosystem home (this repository)
+        - Cross-repository / platform-wide
+        - Proposal for a new ecosystem repository
+    validations:
+      required: true
