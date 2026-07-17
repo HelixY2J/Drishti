@@ -7,8 +7,9 @@ is defined here — copy, do not improvise.
 
 - The platform is **TLSOC** — always uppercase in prose ("TLSOC", never "Tlsoc" or
   "tlsoc" outside repository names and code).
-- Repository names are lowercase (`tlsoc-engine`) per the
-  [naming convention](ecosystem.md#naming-convention).
+- Component names are title-case with the TLSOC prefix (*TLSOC Engine*);
+  repository names follow the [naming convention](ecosystem.md#naming-convention)
+  (existing repositories keep their historical names).
 
 ## Logo
 
@@ -52,7 +53,7 @@ badges** (CI, language/runtime, platform).
 Repo-specific examples:
 
 ```markdown
-![CI](https://github.com/sankettaware16/tlsoc-engine/actions/workflows/ci.yml/badge.svg)
+![CI](https://github.com/sankettaware16/foss-soc-engine/actions/workflows/ci.yml/badge.svg)
 ![Python](https://img.shields.io/badge/python-3.8%2B-3776AB?logo=python&logoColor=white)
 ![Docker Compose](https://img.shields.io/badge/docker-compose-2496ED?logo=docker&logoColor=white)
 ![Elastic Stack](https://img.shields.io/badge/elastic%20stack-8.x-005571?logo=elastic)
@@ -88,9 +89,9 @@ horizontal rule):
 
 <p align="center">
   <a href="https://github.com/sankettaware16/tlsoc">TLSOC</a> •
-  <a href="https://github.com/sankettaware16/tlsoc-engine">Engine</a> •
-  <a href="https://github.com/sankettaware16/tlsoc-docker-deploy">Deploy</a> •
-  <a href="https://github.com/sankettaware16/tlsoc-reporting">Reporting</a>
+  <a href="https://github.com/sankettaware16/foss-soc-engine">Engine</a> •
+  <a href="https://github.com/sankettaware16/TLSOCDockerDeploy">Deploy</a> •
+  <a href="https://github.com/sankettaware16/tlsoc-reporting-framework">Reporting</a>
 </p>
 ```
 
@@ -115,7 +116,7 @@ Add new repositories to the footer link row as they are published.
   natively by GitHub.
 - Direction: `flowchart LR` for pipelines, `flowchart TB` for component stacks,
   `sequenceDiagram` for message flows.
-- Node labels name the repository (`tlsoc-engine`) or the concrete technology
+- Node labels name the repository (`TLSOC Engine`) or the concrete technology
   (`Apache Kafka`), not abbreviations.
 
 ## Voice and tone

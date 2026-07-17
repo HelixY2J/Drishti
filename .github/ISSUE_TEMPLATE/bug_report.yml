@@ -8,9 +8,9 @@ body:
       value: |
         Thanks for taking the time to report a problem.
         If the bug is in a specific component, please file it in that repository instead:
-        [tlsoc-engine](https://github.com/sankettaware16/tlsoc-engine/issues) ·
-        [tlsoc-docker-deploy](https://github.com/sankettaware16/tlsoc-docker-deploy/issues) ·
-        [tlsoc-reporting](https://github.com/sankettaware16/tlsoc-reporting/issues)
+        [foss-soc-engine](https://github.com/sankettaware16/foss-soc-engine/issues) ·
+        [TLSOCDockerDeploy](https://github.com/sankettaware16/TLSOCDockerDeploy/issues) ·
+        [TLSOC Reporting](https://github.com/sankettaware16/tlsoc-reporting-framework/issues)
 
         **Never include real deployment data** (IPs, hostnames, organization names,
         credentials, or raw log excerpts). Use placeholders.

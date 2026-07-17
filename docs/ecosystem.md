@@ -6,11 +6,24 @@ that new repositories can join the ecosystem without inventing anything.
 
 ## Naming convention
 
-- Repository names are **lowercase with hyphens**, prefixed `tlsoc-`:
-  `tlsoc-engine`, `tlsoc-docker-deploy`, `tlsoc-reporting`, `tlsoc-dashboard`,
-  `tlsoc-ml`, `tlsoc-parser-plugins`, `tlsoc-examples`, `tlsoc-integrations`.
-- The ecosystem home is simply `tlsoc`.
-- No capitalized or underscore-separated repository names.
+- **Component (product) names** are title-case with the TLSOC prefix and are
+  used in all prose, titles, and diagrams: *TLSOC Engine*, *TLSOC Docker
+  Deploy*, *TLSOC Reporting*.
+- **Existing repositories keep their historical names** — renaming is
+  deliberately avoided so that clones, links, and integrations never break:
+
+  | Component | Repository |
+  |---|---|
+  | TLSOC (ecosystem home) | `tlsoc` |
+  | TLSOC Engine | `foss-soc-engine` |
+  | TLSOC Docker Deploy | `TLSOCDockerDeploy` |
+  | TLSOC Reporting | `tlsoc-reporting-framework` |
+
+- **Future repositories** are named lowercase-with-hyphens, prefixed `tlsoc-`:
+  `tlsoc-dashboard`, `tlsoc-ml`, `tlsoc-parser-plugins`, `tlsoc-examples`,
+  `tlsoc-integrations`.
+- Repository tables and links always show the real repository name; prose uses
+  the component name.
 
 ## Standard repository structure
 
@@ -79,9 +92,9 @@ present but not linked):
 | Repository | Purpose |
 |---|---|
 | [tlsoc](https://github.com/sankettaware16/tlsoc) | Ecosystem home — documentation, architecture, roadmap |
-| [tlsoc-engine](https://github.com/sankettaware16/tlsoc-engine) | Log parsing and ECS normalization engine |
-| [tlsoc-docker-deploy](https://github.com/sankettaware16/tlsoc-docker-deploy) | TLS-secured core stack (Kafka, Logstash, Elasticsearch, Kibana) |
-| [tlsoc-reporting](https://github.com/sankettaware16/tlsoc-reporting) | Declarative executive reporting (HTML/PDF) |
+| [foss-soc-engine](https://github.com/sankettaware16/foss-soc-engine) | Log parsing and ECS normalization engine |
+| [TLSOCDockerDeploy](https://github.com/sankettaware16/TLSOCDockerDeploy) | TLS-secured core stack (Kafka, Logstash, Elasticsearch, Kibana) |
+| [tlsoc-reporting-framework](https://github.com/sankettaware16/tlsoc-reporting-framework) | Declarative executive reporting (HTML/PDF) |
 
 When a new repository is published, add its row here and to every existing
 repository's table.
@@ -94,9 +107,9 @@ repository's table.
   `web-ui-guide.md`.
 - Diagrams are [Mermaid](https://mermaid.js.org/) blocks in Markdown — they render
   natively on GitHub and diff cleanly.
-- Terminology is consistent across repositories: *the stack* (tlsoc-docker-deploy
-  deployment), *the engine* (tlsoc-engine), *rule* (a YAML parser definition),
-  *datasource* / *report* (tlsoc-reporting YAML units), *the envelope* (the Kafka
+- Terminology is consistent across repositories: *the stack* (TLSOC Docker Deploy
+  deployment), *the engine* (TLSOC Engine), *rule* (a YAML parser definition),
+  *datasource* / *report* (TLSOC Reporting YAML units), *the envelope* (the Kafka
   JSON message contract), *ECS* (Elastic Common Schema).
 - Real deployment data — IP addresses, hostnames, organization names, log samples —
   never appears in documentation or commits. Use `example_org`-style placeholders.

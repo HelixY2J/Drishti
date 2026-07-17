@@ -54,10 +54,10 @@ runs on Windows and macOS for rule development.
 
 No — they compose, but each stands alone:
 
-- **tlsoc-docker-deploy** alone gives you a TLS-secured ELK + Kafka stack.
-- **tlsoc-engine** works with any Kafka that carries its JSON envelope, and any
+- **TLSOC Docker Deploy** alone gives you a TLS-secured ELK + Kafka stack.
+- **TLSOC Engine** works with any Kafka that carries its JSON envelope, and any
   consumer can read its NDJSON output.
-- **tlsoc-reporting** works against any Elasticsearch 8.x cluster holding
+- **TLSOC Reporting** works against any Elasticsearch 8.x cluster holding
   ECS-style parsed logs.
 
 ### Can everything run on one server?
@@ -92,7 +92,7 @@ monitoring, among others. Any other source can be added as a YAML rule — no co
 ### Do I need to know regex or ECS to add a log source?
 
 No. The engine documents an AI "master prompt": paste raw log samples into any AI
-chatbot with the prompt from `tlsoc-engine/docs/writing-rules.md`, and it returns
+chatbot with the prompt from `foss-soc-engine/docs/writing-rules.md`, and it returns
 a finished, ECS-compliant YAML rule. The `ecs_helper.py` tool then validates the
 field names, and CI's golden-sample exam locks the behavior in.
 

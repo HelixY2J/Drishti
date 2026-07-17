@@ -21,8 +21,8 @@ On the central server, deploy TLS-secured Kafka + Logstash + Elasticsearch + Kib
 
 ```bash
 cd /opt
-sudo git clone https://github.com/sankettaware16/tlsoc-docker-deploy.git
-cd tlsoc-docker-deploy
+sudo git clone https://github.com/sankettaware16/TLSOCDockerDeploy.git
+cd TLSOCDockerDeploy
 ./certs/generate-certs.sh <server-ip>
 sudo cp .env.example .env      # then edit: set the server IP
 sudo chmod +x install.sh
@@ -30,7 +30,7 @@ sudo ./install.sh
 ```
 
 After first start, reset the built-in Elastic passwords and restart the stack —
-follow [tlsoc-docker-deploy — Installation](https://github.com/sankettaware16/tlsoc-docker-deploy/blob/main/docs/installation.md).
+follow [TLSOC Docker Deploy — Installation](https://github.com/sankettaware16/TLSOCDockerDeploy/blob/main/docs/installation.md).
 
 Kibana is then available at `https://<server-ip>:5601`.
 
@@ -41,22 +41,22 @@ installs `omkafka`, auto-discovers logs in `/var/log`, generates a hardened
 rotation-safe rsyslog configuration, and verifies end-to-end delivery to Kafka:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/sankettaware16/tlsoc-docker-deploy/main/tlsoc-onboard.sh -o tlsoc-onboard.sh
+curl -fsSL https://raw.githubusercontent.com/sankettaware16/TLSOCDockerDeploy/main/tlsoc-onboard.sh -o tlsoc-onboard.sh
 sudo bash tlsoc-onboard.sh
 ```
 
 Manual template and non-interactive rollout:
-[tlsoc-docker-deploy — Onboarding](https://github.com/sankettaware16/tlsoc-docker-deploy/blob/main/docs/onboarding.md).
+[TLSOC Docker Deploy — Onboarding](https://github.com/sankettaware16/TLSOCDockerDeploy/blob/main/docs/onboarding.md).
 
 ## Step 3 — Start the parsing engine
 
 On the central server (or a dedicated parsing host), install
-[tlsoc-engine](https://github.com/sankettaware16/tlsoc-engine):
+[foss-soc-engine](https://github.com/sankettaware16/foss-soc-engine):
 
 ```bash
-git clone https://github.com/sankettaware16/tlsoc-engine.git
-sudo mv tlsoc-engine /etc/
-cd /etc/tlsoc-engine
+git clone https://github.com/sankettaware16/foss-soc-engine.git
+sudo mv foss-soc-engine /etc/
+cd /etc/foss-soc-engine
 export MAXMIND_LICENSE_KEY=<your-key>   # optional, enables GeoIP/ASN enrichment
 ./install.sh
 ```
@@ -73,7 +73,7 @@ Then:
 
 The engine also ships a browser console (Web UI) and an optional Kibana plugin for
 managing rules without a terminal — see
-[tlsoc-engine — documentation](https://github.com/sankettaware16/tlsoc-engine/tree/main/docs).
+[TLSOC Engine — documentation](https://github.com/sankettaware16/foss-soc-engine/tree/main/docs).
 
 ## Step 4 — Enable reporting
 
@@ -81,9 +81,9 @@ On a host that can reach Elasticsearch (zero configuration if it is the stack ho
 
 ```bash
 cd /opt
-sudo git clone https://github.com/sankettaware16/tlsoc-reporting.git
-sudo chown -R $USER: tlsoc-reporting
-cd tlsoc-reporting
+sudo git clone https://github.com/sankettaware16/tlsoc-reporting-framework.git
+sudo chown -R $USER: tlsoc-reporting-framework
+cd tlsoc-reporting-framework
 python3 -m venv .venv
 .venv/bin/pip install -r requirements.txt
 sudo apt install -y wkhtmltopdf
@@ -93,7 +93,7 @@ sudo apt install -y wkhtmltopdf
 ```
 
 Schedule it daily and (optionally) enable email delivery:
-[tlsoc-reporting — Automation](https://github.com/sankettaware16/tlsoc-reporting/blob/main/docs/automation.md).
+[TLSOC Reporting — Automation](https://github.com/sankettaware16/tlsoc-reporting-framework/blob/main/docs/automation.md).
 
 ## Verifying the pipeline
 
@@ -103,7 +103,7 @@ Schedule it daily and (optionally) enable email delivery:
 | Engine parsing healthily | `logs/stats.json` (EPS, errors) or the Web UI Monitor |
 | Unparsed lines | `logs/dlq/<source>.json` in the engine directory |
 | Events in Elasticsearch | Kibana → Discover, index pattern `all-logs-*` |
-| Reports generated | `output/html/` and `output/pdf/` in tlsoc-reporting |
+| Reports generated | `output/html/` and `output/pdf/` in TLSOC Reporting |
 
 ## Where to go next
 

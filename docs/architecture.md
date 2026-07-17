@@ -23,11 +23,11 @@ transport and storage, ECS normalization, and reporting.
 ```mermaid
 flowchart LR
     SRC["Monitored servers<br/>rsyslog + omkafka"] -- "TLS :9094" --> K["Apache Kafka"]
-    K --> ENG["tlsoc-engine<br/>parse + normalize (ECS)"]
+    K --> ENG["TLSOC Engine<br/>parse + normalize (ECS)"]
     ENG -- "NDJSON files" --> LS["Logstash"]
     LS --> ES["Elasticsearch"]
     ES --> KB["Kibana dashboards"]
-    ES --> REP["tlsoc-reporting<br/>HTML / PDF reports"]
+    ES --> REP["TLSOC Reporting<br/>HTML / PDF reports"]
     REP --> MAIL["Email delivery"]
 ```
 
@@ -42,7 +42,7 @@ flowchart TB
         LOGFILES --> IMFILE --> OMKAFKA
     end
 
-    subgraph deploy["tlsoc-docker-deploy (Docker Compose, one host)"]
+    subgraph deploy["TLSOC Docker Deploy (Docker Compose, one host)"]
         KAFKA["Kafka broker<br/>internal :9092 / external TLS :9094"]
         LOGSTASH["Logstash<br/>file input → ES output"]
         ELASTIC["Elasticsearch<br/>TLS :9200"]
@@ -50,7 +50,7 @@ flowchart TB
         PLUGIN["TLSOC Parser plugin<br/>(optional Kibana plugin)"]
     end
 
-    subgraph engine["tlsoc-engine (host service)"]
+    subgraph engine["TLSOC Engine (host service)"]
         SUP["Worker supervisor (main.py)"]
         W["Worker pool<br/>one Kafka consumer group"]
         RULES["YAML rule registry<br/>rules/*.yaml (hot reload)"]
@@ -65,7 +65,7 @@ flowchart TB
         W --> OUT
     end
 
-    subgraph reporting["tlsoc-reporting (host service / cron)"]
+    subgraph reporting["TLSOC Reporting (host service / cron)"]
         FRAME["Report framework<br/>YAML reports × YAML datasources"]
         PDF["PDF chain<br/>wkhtmltopdf → Chrome → WeasyPrint"]
         EMAILER["Report emailer<br/>(cron, SMTP)"]
@@ -91,10 +91,10 @@ The life of one log line, end to end:
 sequenceDiagram
     participant S as Source server (rsyslog)
     participant K as Kafka
-    participant E as tlsoc-engine
+    participant E as TLSOC Engine
     participant L as Logstash
     participant ES as Elasticsearch
-    participant R as tlsoc-reporting
+    participant R as TLSOC Reporting
 
     S->>K: JSON envelope {meta, raw} over TLS (topic keyed by program)
     K->>E: consumer group poll (at-least-once)
@@ -149,9 +149,9 @@ flowchart TB
                 CE["Elasticsearch"]
                 CKB["Kibana"]
             end
-            CENG["tlsoc-engine (systemd)"]
+            CENG["TLSOC Engine (systemd)"]
             CRED["Redis"]
-            CREP["tlsoc-reporting (cron)"]
+            CREP["TLSOC Reporting (cron)"]
         end
         AN["Analyst browser"]
     end
@@ -177,12 +177,12 @@ parallelism (one partition is consumed by exactly one worker).
 | From | To | Protocol / port | Purpose |
 |---|---|---|---|
 | Monitored servers | Kafka | TLS `:9094` | Log envelope delivery (external listener) |
-| tlsoc-engine | Kafka | `kafka:9092` (internal) or TLS `:9094` | Topic consumption |
-| tlsoc-engine | Redis | `:6379` (localhost) | Stateful transaction correlation |
+| TLSOC Engine | Kafka | `kafka:9092` (internal) or TLS `:9094` | Topic consumption |
+| TLSOC Engine | Redis | `:6379` (localhost) | Stateful transaction correlation |
 | Logstash | Elasticsearch | HTTPS `:9200` | Event indexing |
 | Kibana | Elasticsearch | HTTPS `:9200` | Search and dashboards |
 | Analysts | Kibana | HTTPS `:5601` | Web access |
-| tlsoc-reporting | Elasticsearch | HTTPS `:9200` | Aggregation queries |
+| TLSOC Reporting | Elasticsearch | HTTPS `:9200` | Aggregation queries |
 | Operators | Engine Web UI | HTTP `:8600` (localhost by default) | Rule/config console |
 
 ## Kafka flow
@@ -224,8 +224,8 @@ Key properties:
 
 ## Parser pipeline
 
-Inside tlsoc-engine, every message passes through this pipeline
-(full detail: `tlsoc-engine/docs/architecture.md`):
+Inside TLSOC Engine, every message passes through this pipeline
+(full detail: `foss-soc-engine/docs/architecture.md`):
 
 ```mermaid
 flowchart TB
@@ -248,7 +248,7 @@ flowchart TB
 
 ## Reporting pipeline
 
-Inside tlsoc-reporting (full detail: `tlsoc-reporting/docs/architecture.md`):
+Inside TLSOC Reporting (full detail: `tlsoc-reporting-framework/docs/architecture.md`):
 
 ```mermaid
 flowchart LR

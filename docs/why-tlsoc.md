@@ -121,11 +121,11 @@ all of it.
 
 TLSOC is that missing layer, prebuilt and opinionated:
 
-- One-command TLS-secured deployment ([tlsoc-docker-deploy](https://github.com/sankettaware16/tlsoc-docker-deploy))
+- One-command TLS-secured deployment ([TLSOCDockerDeploy](https://github.com/sankettaware16/TLSOCDockerDeploy))
 - Verified agentless onboarding per server, in one command
 - A parser framework with validation, testing, and hot reload
-  ([tlsoc-engine](https://github.com/sankettaware16/tlsoc-engine))
-- Executive reporting out of the box ([tlsoc-reporting](https://github.com/sankettaware16/tlsoc-reporting))
+  ([foss-soc-engine](https://github.com/sankettaware16/foss-soc-engine))
+- Executive reporting out of the box ([tlsoc-reporting-framework](https://github.com/sankettaware16/tlsoc-reporting-framework))
 
 If you already run a tuned ELK pipeline you are happy with, TLSOC's components
 still compose: the engine works with any Kafka + any consumer of NDJSON, and the

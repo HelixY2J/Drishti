@@ -10,7 +10,7 @@ At a glance:
 
 | Status | Items |
 |---|---|
-| ✅ Shipped | tlsoc-engine · tlsoc-docker-deploy · tlsoc-reporting · agentless onboarding |
+| ✅ Shipped | foss-soc-engine · TLSOCDockerDeploy · tlsoc-reporting-framework · agentless onboarding |
 | 🚧 In progress | Ecosystem documentation & branding · versioned releases · parser library growth |
 | Planned | tlsoc-dashboard · tlsoc-ml · tlsoc-parser-plugins · tlsoc-examples · tlsoc-integrations |
 
@@ -18,17 +18,17 @@ At a glance:
 
 Shipped and actively maintained:
 
-- **tlsoc-engine** — polymorphic parsing engine: five rule strategies (stateless,
+- **TLSOC Engine** — polymorphic parsing engine: five rule strategies (stateless,
   multi_match, stateful, json_map, xml_xpath), ECS-validated output, real event
   timestamps, offline GeoIP/ASN enrichment, per-source dead-letter queues,
   at-least-once Kafka delivery, worker-pool scaling, live rule reload, preflight
   and pipeline-replication validators, golden-sample regression CI, Web UI
   console, and a native Kibana plugin.
-- **tlsoc-docker-deploy** — one-command TLS-secured Kafka + Logstash +
+- **TLSOC Docker Deploy** — one-command TLS-secured Kafka + Logstash +
   Elasticsearch + Kibana stack for fresh Ubuntu servers, local CA generation, and
   the agentless `tlsoc-onboard.sh` source-onboarding script with end-to-end
   delivery verification.
-- **tlsoc-reporting** — declarative report framework (YAML reports × YAML
+- **TLSOC Reporting** — declarative report framework (YAML reports × YAML
   datasources), signature-based security analysis, offline preview backend,
   HTML/PDF rendering chain, daily cron automation, and email delivery.
 
@@ -38,7 +38,7 @@ Shipped and actively maintained:
   refactoring).
 - Consistent repository metadata, community health files, and issue/PR templates.
 - Tagged, changelog-backed releases for every repository.
-- Expanded parser rule library and golden-sample coverage in tlsoc-engine.
+- Expanded parser rule library and golden-sample coverage in TLSOC Engine.
 - Screenshot and demo assets for the ecosystem home.
 
 ## Future

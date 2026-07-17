@@ -112,9 +112,9 @@ operational overhead. The full rationale, design trade-offs, and comparisons
 
 | You want to… | Go to |
 |---|---|
-| **Deploy TLSOC** (the TLS-secured stack) | [tlsoc-docker-deploy](https://github.com/sankettaware16/tlsoc-docker-deploy) |
-| **Develop parser rules** or run the parsing engine | [tlsoc-engine](https://github.com/sankettaware16/tlsoc-engine) |
-| **Generate executive reports** | [tlsoc-reporting](https://github.com/sankettaware16/tlsoc-reporting) |
+| **Deploy TLSOC** (the TLS-secured stack) | [TLSOCDockerDeploy](https://github.com/sankettaware16/TLSOCDockerDeploy) |
+| **Develop parser rules** or run the parsing engine | [foss-soc-engine](https://github.com/sankettaware16/foss-soc-engine) |
+| **Generate executive reports** | [tlsoc-reporting-framework](https://github.com/sankettaware16/tlsoc-reporting-framework) |
 | **Read platform documentation** | [tlsoc](https://github.com/sankettaware16/tlsoc) (this repository) |
 
 ## Ecosystem Repositories
@@ -122,9 +122,9 @@ operational overhead. The full rationale, design trade-offs, and comparisons
 | Repository | Purpose | Status |
 |---|---|---|
 | [tlsoc](https://github.com/sankettaware16/tlsoc) | Ecosystem home — documentation, architecture, roadmap, standards | Active |
-| [tlsoc-engine](https://github.com/sankettaware16/tlsoc-engine) | High-performance polymorphic log parsing and ECS normalization engine (Kafka consumer, Web UI, Kibana plugin) | Active |
-| [tlsoc-docker-deploy](https://github.com/sankettaware16/tlsoc-docker-deploy) | One-command, TLS-secured core stack: Kafka + Logstash + Elasticsearch + Kibana via Docker Compose, plus agentless source onboarding | Active |
-| [tlsoc-reporting](https://github.com/sankettaware16/tlsoc-reporting) | Declarative, template-driven executive reporting over ELK data — daily HTML/PDF reports with KPIs, charts, and insights | Active |
+| [foss-soc-engine](https://github.com/sankettaware16/foss-soc-engine) | High-performance polymorphic log parsing and ECS normalization engine (Kafka consumer, Web UI, Kibana plugin) | Active |
+| [TLSOCDockerDeploy](https://github.com/sankettaware16/TLSOCDockerDeploy) | One-command, TLS-secured core stack: Kafka + Logstash + Elasticsearch + Kibana via Docker Compose, plus agentless source onboarding | Active |
+| [tlsoc-reporting-framework](https://github.com/sankettaware16/tlsoc-reporting-framework) | Declarative, template-driven executive reporting over ELK data — daily HTML/PDF reports with KPIs, charts, and insights | Active |
 | tlsoc-dashboard | Unified operational dashboard for the platform | Planned |
 | tlsoc-ml | Machine-learning-based anomaly detection over normalized events | Planned |
 | tlsoc-parser-plugins | Community-contributed parser rule packs for additional log sources | Planned |
@@ -139,18 +139,18 @@ flowchart LR
         RS["rsyslog + omkafka<br/>(agentless forwarding)"]
     end
 
-    subgraph deploy["tlsoc-docker-deploy — TLS-secured core stack"]
+    subgraph deploy["TLSOC Docker Deploy — TLS-secured core stack"]
         K["Apache Kafka"]
         LS["Logstash"]
         ES["Elasticsearch"]
         KB["Kibana<br/>(+ TLSOC Parser plugin)"]
     end
 
-    subgraph engine["tlsoc-engine"]
+    subgraph engine["TLSOC Engine"]
         ENG["Parsing & ECS normalization<br/>(worker pool, Redis-backed state)"]
     end
 
-    subgraph reporting["tlsoc-reporting"]
+    subgraph reporting["TLSOC Reporting"]
         REP["Report generator<br/>(HTML / PDF + email delivery)"]
     end
 
@@ -167,14 +167,14 @@ flowchart LR
 1. A monitored server forwards each log line to Kafka using `rsyslog` + `omkafka`,
    wrapped in a small JSON envelope that carries routing metadata
    (`org`, `dept`, `env`, `server`, `source_program`).
-2. **tlsoc-engine** consumes the Kafka topics, routes every line to the correct YAML
+2. **TLSOC Engine** consumes the Kafka topics, routes every line to the correct YAML
    parsing rule, normalizes it into an ECS-compliant JSON event (with GeoIP/ASN
    enrichment and accurate event timestamps), and writes NDJSON output files.
 3. **Logstash** tails the engine's output and indexes the events into **Elasticsearch**
    over TLS.
 4. **Kibana** provides search and dashboards — including an optional native TLSOC Parser
    plugin for managing engine rules from inside Kibana.
-5. **tlsoc-reporting** queries Elasticsearch on a schedule and renders daily HTML/PDF
+5. **TLSOC Reporting** queries Elasticsearch on a schedule and renders daily HTML/PDF
    executive reports, delivered by its email automation component.
 
 Detailed diagrams (component, deployment, Kafka flow, parser pipeline, reporting
@@ -187,14 +187,14 @@ A complete deployment takes four steps. The full walkthrough with commands is in
 
 | Step | What you do | Where |
 |---|---|---|
-| 1. Deploy the core stack | Bring up TLS-secured Kafka, Logstash, Elasticsearch, and Kibana with Docker Compose on one server | [tlsoc-docker-deploy](https://github.com/sankettaware16/tlsoc-docker-deploy) |
-| 2. Onboard log sources | Run the one-command onboarding script on each Linux server you want to monitor | [tlsoc-docker-deploy — onboarding](https://github.com/sankettaware16/tlsoc-docker-deploy/blob/main/docs/onboarding.md) |
-| 3. Start the parsing engine | Install tlsoc-engine, map your sources to parsing rules, run it as a systemd service | [tlsoc-engine](https://github.com/sankettaware16/tlsoc-engine) |
-| 4. Enable reporting | Configure tlsoc-reporting and schedule the daily report cron job | [tlsoc-reporting](https://github.com/sankettaware16/tlsoc-reporting) |
+| 1. Deploy the core stack | Bring up TLS-secured Kafka, Logstash, Elasticsearch, and Kibana with Docker Compose on one server | [TLSOCDockerDeploy](https://github.com/sankettaware16/TLSOCDockerDeploy) |
+| 2. Onboard log sources | Run the one-command onboarding script on each Linux server you want to monitor | [TLSOC Docker Deploy — onboarding](https://github.com/sankettaware16/TLSOCDockerDeploy/blob/main/docs/onboarding.md) |
+| 3. Start the parsing engine | Install TLSOC Engine, map your sources to parsing rules, run it as a systemd service | [foss-soc-engine](https://github.com/sankettaware16/foss-soc-engine) |
+| 4. Enable reporting | Configure TLSOC Reporting and schedule the daily report cron job | [tlsoc-reporting-framework](https://github.com/sankettaware16/tlsoc-reporting-framework) |
 
 ## Supported Log Sources
 
-Parsers bundled with [tlsoc-engine](https://github.com/sankettaware16/tlsoc-engine)
+Parsers bundled with [foss-soc-engine](https://github.com/sankettaware16/foss-soc-engine)
 today:
 
 | Category | Sources |
@@ -208,7 +208,7 @@ today:
 
 Any other source — syslog, JSON, or XML — can be added as a **YAML rule with no
 code**; the engine even documents an
-[AI master prompt](https://github.com/sankettaware16/tlsoc-engine/blob/main/docs/writing-rules.md)
+[AI master prompt](https://github.com/sankettaware16/foss-soc-engine/blob/main/docs/writing-rules.md)
 that generates an ECS-compliant rule from raw log samples.
 
 ## Documentation
@@ -234,9 +234,9 @@ The full roadmap, with detail per item, is in [docs/roadmap.md](docs/roadmap.md)
 
 **Current — shipped and maintained**
 
-- ✅ Parsing engine (tlsoc-engine)
-- ✅ TLS-secured deployment stack (tlsoc-docker-deploy)
-- ✅ Reporting framework (tlsoc-reporting)
+- ✅ Parsing engine (foss-soc-engine)
+- ✅ TLS-secured deployment stack (TLSOCDockerDeploy)
+- ✅ Reporting framework (tlsoc-reporting-framework)
 - ✅ Agentless onboarding
 
 **In progress**
@@ -282,7 +282,7 @@ ecosystem unless a repository states otherwise.
 
 <p align="center">
   <a href="https://github.com/sankettaware16/tlsoc">TLSOC</a> •
-  <a href="https://github.com/sankettaware16/tlsoc-engine">Engine</a> •
-  <a href="https://github.com/sankettaware16/tlsoc-docker-deploy">Deploy</a> •
-  <a href="https://github.com/sankettaware16/tlsoc-reporting">Reporting</a>
+  <a href="https://github.com/sankettaware16/foss-soc-engine">Engine</a> •
+  <a href="https://github.com/sankettaware16/TLSOCDockerDeploy">Deploy</a> •
+  <a href="https://github.com/sankettaware16/tlsoc-reporting-framework">Reporting</a>
 </p>

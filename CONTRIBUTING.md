@@ -3,16 +3,16 @@
 Thank you for your interest in improving TLSOC. This guide covers contributions to
 the ecosystem as a whole; each repository additionally has its own `CONTRIBUTING.md`
 with component-specific instructions (for example, how to write and test parser
-rules in tlsoc-engine).
+rules in TLSOC Engine).
 
 ## Where to contribute
 
 | I want to… | Go to |
 |---|---|
 | Fix or improve platform documentation, architecture, roadmap | this repository ([tlsoc](https://github.com/sankettaware16/tlsoc)) |
-| Add or fix a parsing rule, engine feature, Web UI, Kibana plugin | [tlsoc-engine](https://github.com/sankettaware16/tlsoc-engine) |
-| Improve the Docker stack, TLS setup, onboarding script | [tlsoc-docker-deploy](https://github.com/sankettaware16/tlsoc-docker-deploy) |
-| Add a report type, datasource, signature pack, or reporting feature | [tlsoc-reporting](https://github.com/sankettaware16/tlsoc-reporting) |
+| Add or fix a parsing rule, engine feature, Web UI, Kibana plugin | [foss-soc-engine](https://github.com/sankettaware16/foss-soc-engine) |
+| Improve the Docker stack, TLS setup, onboarding script | [TLSOCDockerDeploy](https://github.com/sankettaware16/TLSOCDockerDeploy) |
+| Add a report type, datasource, signature pack, or reporting feature | [tlsoc-reporting-framework](https://github.com/sankettaware16/tlsoc-reporting-framework) |
 | Propose something cross-cutting or a new ecosystem repository | this repository, via a feature-request issue |
 
 ## Ground rules
