@@ -115,6 +115,7 @@ operational overhead. The full rationale, design trade-offs, and comparisons
 | **Deploy TLSOC** (the TLS-secured stack) | [TLSOCDockerDeploy](https://github.com/sankettaware16/TLSOCDockerDeploy) |
 | **Develop parser rules** or run the parsing engine | [foss-soc-engine](https://github.com/sankettaware16/foss-soc-engine) |
 | **Generate executive reports** | [tlsoc-reporting-framework](https://github.com/sankettaware16/tlsoc-reporting-framework) |
+| **Detect anomalies with ML** (behavioral detection) | [tlsoc-machinelearning-framework](https://github.com/sankettaware16/tlsoc-machinelearning-framework) |
 | **Read platform documentation** | [tlsoc](https://github.com/sankettaware16/tlsoc) (this repository) |
 
 ## Ecosystem Repositories
@@ -125,8 +126,8 @@ operational overhead. The full rationale, design trade-offs, and comparisons
 | [foss-soc-engine](https://github.com/sankettaware16/foss-soc-engine) | High-performance polymorphic log parsing and ECS normalization engine (Kafka consumer, Web UI, Kibana plugin) | Active |
 | [TLSOCDockerDeploy](https://github.com/sankettaware16/TLSOCDockerDeploy) | One-command, TLS-secured core stack: Kafka + Logstash + Elasticsearch + Kibana via Docker Compose, plus agentless source onboarding | Active |
 | [tlsoc-reporting-framework](https://github.com/sankettaware16/tlsoc-reporting-framework) | Declarative, template-driven executive reporting over ELK data — daily HTML/PDF reports with KPIs, charts, and insights | Active |
+| [tlsoc-machinelearning-framework](https://github.com/sankettaware16/tlsoc-machinelearning-framework) | Self-learning behavioral anomaly detection over ECS events — learns each environment's normal and alerts on deviation, zero threshold tuning (web_recon directory-enumeration detector shipping) | Testing |
 | tlsoc-dashboard | Unified operational dashboard for the platform | Planned |
-| tlsoc-ml | Machine-learning-based anomaly detection over normalized events | Planned |
 | tlsoc-parser-plugins | Community-contributed parser rule packs for additional log sources | Planned |
 | tlsoc-examples | End-to-end example deployments, sample configurations, and labs | Planned |
 | tlsoc-integrations | Connectors for third-party tools (ticketing, alerting, threat intel) | Planned |
